@@ -3,6 +3,7 @@ require_once __DIR__ . "/../controller/pengajuan_controller.php";
 require_once __DIR__ . "/../controller/komentar_controller.php";
 require_once __DIR__ . "/../tools.php";
 
+session_start();
 loginIfnotAuth();
 updateStatusPengajuan();
 ?>
@@ -34,9 +35,11 @@ updateStatusPengajuan();
                   <li class="list-unstyled">
                         <a href="<?= ROOT ?>/view/listpengajuan.php" class="fw-bold text-light me-5 text-decoration-none">Suratmu</a>
                   </li>
-                  <li class="list-unstyled">
-                        <a href="<?= ROOT ?>/view/buatpengajuan.php" class="text-light me-5 text-decoration-none">Ajukan</a>
-                  </li>
+                  <?php if ($_SESSION["role"] == "MAHASISWA") : ?>
+                        <li class="list-unstyled">
+                              <a href="<?= ROOT ?>/view/buatpengajuan.php" class="fw-bold text-light me-5 text-decoration-none">Ajukan</a>
+                        </li>
+                  <?php endif; ?>
                   <li class="list-unstyled">
                         <a href="<?= ROOT ?>/view/profile.php" class="text-light me-5 text-decoration-none">Profile</a>
                   </li>

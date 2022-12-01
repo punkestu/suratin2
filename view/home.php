@@ -34,9 +34,11 @@ loginIfnotAuth();
                   <li class="list-unstyled">
                         <a href="<?= ROOT ?>/view/listpengajuan.php" class="text-light me-5 text-decoration-none">Suratmu</a>
                   </li>
-                  <li class="list-unstyled">
-                        <a href="<?= ROOT ?>/view/buatpengajuan.php" class="text-light me-5 text-decoration-none">Ajukan</a>
-                  </li>
+                  <?php if ($_SESSION["role"] == "MAHASISWA") : ?>
+                        <li class="list-unstyled">
+                              <a href="<?= ROOT ?>/view/buatpengajuan.php" class="fw-bold text-light me-5 text-decoration-none">Ajukan</a>
+                        </li>
+                  <?php endif; ?>
                   <li class="list-unstyled">
                         <a href="<?= ROOT ?>/view/profile.php" class="text-light me-5 text-decoration-none">Profile</a>
                   </li>
