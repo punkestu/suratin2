@@ -74,7 +74,7 @@ updateStatusPengajuan();
                                     <h3 class="<?= $d["status"] == "diterima" ? "text-success" : ($d["status"] == "ditolak" ? "text-danger" : "text-secondary") ?>">Progres: <?= $d["status"] ?></h3>
                               </div>
                               <a href="<?= ROOT ?>/view/listpengajuan.php?code=<?= $d['id'] ?>" class="btn btn-primary mb-2">Detail</a>
-                              <a href="<?= ROOT ?>/view/pengajuan_controller.php?code=<? $d['id'] ?>" class="btn btn-danger">Tarik</a>
+                              <a href="<?= ROOT ?>/view/pengajuan_controller.php?want=tarik&code=<? $d['id'] ?>" class="btn btn-danger">Tarik</a>
                         </div>
                   <?php endforeach; ?>
             </div>

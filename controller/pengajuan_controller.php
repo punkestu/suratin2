@@ -48,3 +48,11 @@ function updateStatusPengajuan()
             $data->updateStatus($conn, "ditolak");
       }
 }
+
+if(isset($_GET["want"]) && $_GET["want"] == "tarik"){
+      if(isset($_GET["code"])){
+            $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
+            Pengajuan::deleteWhereId($conn, $_GET["code"], $_COOKIE["token"]);
+      }
+      header("Location: " . ROOT . "/view/listpengajuan.php", true, 301);
+}

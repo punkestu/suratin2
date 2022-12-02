@@ -174,4 +174,8 @@ class Pengajuan
                   return ["code" => 400, "data" => $e->getMessage()];
             }
       }
+
+      public static function deleteWhereId($conn, $id, $user_id){
+            
+      }
 }
