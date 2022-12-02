@@ -101,8 +101,9 @@ class Pengajuan
             $id = uniqid();
             $res = ["msg" => NULL, "data" => ""];
             try {
+                  $now = time();
                   $conn->query("INSERT INTO file_surat (id, kategori_id) VALUES ('$file',$kategori);");
-                  $conn->query("INSERT INTO pengajuan (id, judul, created_by, forwarded_to, created_at, file, status) VALUES('$id', '$judul', '$created_by', '$forwarded_to', UNIX_TIMESTAMP(), '$file', 1);");
+                  $conn->query("INSERT INTO pengajuan (id, judul, created_by, forwarded_to, created_at, file, status) VALUES('$id', '$judul', '$created_by', '$forwarded_to', $now, '$file', 1);");
                   $res["data"] = $id;
             } catch (Exception $e) {
                   $res["msg"] = $e->getMessage();
@@ -113,13 +114,13 @@ class Pengajuan
       public static function whereCreatedBy($conn, $createdBy)
       {
             try {
-                  $query = "SELECT p.id as id, judul, created_at, kategori, s.status as status, file, file_hasil, name as forward FROM pengajuan p JOIN file_surat fs ON fs.id = p.file JOIN kategori_surat ks ON fs.kategori_id = ks.kode JOIN users u ON u.id = p.forwarded_to JOIN status s ON s.kode = p.status WHERE created_by='$createdBy';";
+                  $query = "SELECT p.id as id, judul, created_at, kategori, s.status as status, file, file_hasil, name as forward FROM pengajuan p JOIN file_surat fs ON fs.id = p.file JOIN kategori_surat ks ON fs.kategori_id = ks.kode JOIN users u ON u.id = p.forwarded_to JOIN status s ON s.kode = p.status WHERE created_by='$createdBy' ORDER BY created_at DESC;";
                   $res = $conn->query($query);
                   if ($res->num_rows > 0) {
                         $buffer = [];
 
                         while ($row = $res->fetch_assoc()) {
-                              $row["created_at"] = strftime("%d/%b/%Y %R %Z");
+                              $row["created_at"] = strftime("%d/%b/%Y %R %Z", $row["created_at"]);
                               array_push($buffer, $row);
                         }
                         return ["code" => 200, "data" => $buffer];
@@ -158,13 +159,13 @@ class Pengajuan
       public static function whereForwardTo($conn, $forwardTo)
       {
             try {
-                  $query = "SELECT p.id as id, judul, created_at, kategori, s.status as status, file, file_hasil, name as forward FROM pengajuan p JOIN file_surat fs ON fs.id = p.file JOIN kategori_surat ks ON fs.kategori_id = ks.kode JOIN users u ON u.id = p.forwarded_to JOIN status s ON s.kode = p.status WHERE forwarded_to='$forwardTo';";
+                  $query = "SELECT p.id as id, judul, created_at, kategori, s.status as status, file, file_hasil, name as forward FROM pengajuan p JOIN file_surat fs ON fs.id = p.file JOIN kategori_surat ks ON fs.kategori_id = ks.kode JOIN users u ON u.id = p.forwarded_to JOIN status s ON s.kode = p.status WHERE forwarded_to='$forwardTo' ORDER BY created_at;";
                   $res = $conn->query($query);
                   if ($res->num_rows > 0) {
                         $buffer = [];
 
                         while ($row = $res->fetch_assoc()) {
-                              $row["created_at"] = strftime("%d/%b/%Y %R %Z");
+                              $row["created_at"] = strftime("%d/%b/%Y %R %Z", $row["created_at"]);
                               array_push($buffer, $row);
                         }
                         return ["code" => 200, "data" => $buffer];
@@ -177,6 +178,8 @@ class Pengajuan
 
       public static function deleteWhereId($conn, $id, $user_id){
             try{
+                  $query = "DELETE FROM komentar WHERE pengajuan_id='$id';";
+                  $conn->query($query);
                   $query = "DELETE FROM pengajuan WHERE id='$id' AND created_by='$user_id'";
                   $conn->query($query);
                   return ["code" => 200, "msg" => "OK"];

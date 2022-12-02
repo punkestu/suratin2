@@ -47,14 +47,14 @@ if (isauth()) {
       <script>
             const register = e => {
                   e.preventDefault();
-                  $.post("<?= ROOT ?>/controller/auth.php", {
+                  $.post("<?= ROOT ?>/routes/auth.php", {
                         name: $("#name").val(),
                         email: $("#email").val(),
                         username: $("#username").val(),
                         password: $("#password").val(),
                         to: "register"
                   }, (data, status, jqXHR) => {
-                        window.location.replace("<?= ROOT ?>/view/home.php");
+                        window.location.replace("<?= ROOT ?>/home/");
                   }).catch(err => {
                         err = JSON.parse(err.responseText);
                         $("#name-error").html(err["msg"]["name"] || "");

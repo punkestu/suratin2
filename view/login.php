@@ -37,12 +37,12 @@ if (isauth()) {
       <script>
             const login = e => {
                   e.preventDefault();
-                  $.post("<?= ROOT ?>/controller/auth.php", {
+                  $.post("<?= ROOT ?>/routes/auth.php", {
                         username: $("#username").val(),
                         password: $("#password").val(),
                         to: "login"
                   }).then((data, status, jqXHR) => {
-                        window.location.replace("<?= ROOT ?>/view/home.php");
+                        window.location.replace("<?= ROOT ?>/home/");
                   }).catch((err) => {
                         console.log(err);
                         err = JSON.parse(err.responseText);
