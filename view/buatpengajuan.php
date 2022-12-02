@@ -1,11 +1,10 @@
 <?php
 require_once __DIR__ . "/../tools.php";
 require_once __DIR__ . "/../env.php";
+require_once __DIR__ . "/../controller/user_controller.php";
 
 session_start();
-if ($_SESSION["role"] != "MAHASISWA") {
-      header("location:" . ROOT . "/view/home.php", true, 301);
-}
+homeIfnotMahasiswa();
 loginIfnotAuth();
 ?>
 
@@ -50,7 +49,10 @@ loginIfnotAuth();
                   </li>
             </ul>
       </nav>
-      <form method="post" class="container card p-3">
+
+      <h1 class="text-center">BUAT PENGAJUAN BARU</h1>
+      <form method="post" class="container card w-25 p-3">
+            <hr>
             <div class="mb-2">
                   <label for="judul" class="form-label">Judul</label>
                   <input type="text" class="form-control m-0" name="judul" id="judul" placeholder="Judul">
@@ -59,6 +61,9 @@ loginIfnotAuth();
             <div class="mb-2">
                   <label for="dosen" class="form-label">Tujuan</label>
                   <select name="dosen" id="dosen" class="form-select">
+                        <?php foreach (getDosen() as $d) : ?>
+                              <option value="<?= $d["id"] ?>"> <?= $d["name"] ?></option>
+                        <?php endforeach; ?>
                   </select>
                   <p class="form-text text-danger" id="dosen-error"></p>
             </div>
@@ -77,28 +82,13 @@ loginIfnotAuth();
                   <p class="form-text text-danger" id="kategori-error"></p>
             </div>
             <div class="mb-2">
-                  <label for="surat" class="form-label">Default file input example</label>
+                  <label for="surat" class="form-label">Upload surat</label>
                   <input class="form-control" type="file" id="surat" name="surat">
                   <p id="surat-error" class="form-text text-danger"></p>
             </div>
             <button id="upload" class="btn btn-primary">Ajukan</button>
       </form>
       <script>
-            var dosen;
-            $.ajax({
-                  async: false,
-                  type: "get",
-                  url: "<?= ROOT ?>/controller/auth.php",
-                  data: {
-                        want: "dosen"
-                  },
-                  success: data => {
-                        dosen = JSON.parse(data);
-                  }
-            });
-            dosen.forEach(d => {
-                  $("#dosen").append("<option value=\"" + d["id"] + "\">" + d["name"] + "</option>");
-            });
 
             const ajukan = e => {
                   e.preventDefault();

@@ -29,6 +29,16 @@ class User
             $this->name = $row["name"];
             $this->role = $row["role"];
       }
+      public function setWhereId($conn, $userid){
+            $query = "SELECT id, username, password, name, role_name as role FROM users u JOIN role_user ru ON ru.kode = u.kode_role WHERE id = '$userid'";
+            $res = $conn->query($query);
+            if ($res->num_rows > 0) {
+                  $row = $res->fetch_assoc();
+                  $this->set($row);
+                  return 'OK';
+            }
+            return NULL;
+      }
       public function setWhereUsername($conn, $username, $index = 0)
       {
             $query = "SELECT id, username, password, name, role_name as role FROM users u JOIN role_user ru ON ru.kode = u.kode_role WHERE username = '$username'";

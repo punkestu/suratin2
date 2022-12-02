@@ -36,7 +36,7 @@ loginIfnotAuth();
                   </li>
                   <?php if ($_SESSION["role"] == "MAHASISWA") : ?>
                         <li class="list-unstyled">
-                              <a href="<?= ROOT ?>/view/buatpengajuan.php" class="fw-bold text-light me-5 text-decoration-none">Ajukan</a>
+                              <a href="<?= ROOT ?>/view/buatpengajuan.php" class="text-light me-5 text-decoration-none">Ajukan</a>
                         </li>
                   <?php endif; ?>
                   <li class="list-unstyled">
@@ -48,33 +48,30 @@ loginIfnotAuth();
             </ul>
       </nav>
 
-      <main class="container">
-
-            <h1 class="text-center">WELCOME HOME</h1>
-            <div class="d-flex flex-column">
-                  <div class="card py-4 d-flex flex-column align-items-center w-50 mx-auto">
-                        <?php
-                        $pengajuan = getYours();
-                        ?>
-                        <div class="card text-center p-2 w-75 mb-2">
-                              <h4>Surat yang kamu ajukan</h4>
-                              <h4><?= getCount()["data"] ?></h4>
-                        </div>
-                        <div class="card text-center p-2 w-75 mb-2 bg-success">
-                              <h4 class="text-light">Surat yang diterima</h4>
-                              <h4 class="text-light"><?= getCountSuccess()["data"] ?></h4>
-                        </div>
-                        <div class="card text-center p-2 w-75 mb-2 bg-danger">
-                              <h4 class="text-light">Surat yang ditolak</h4>
-                              <h4 class="text-light"><?= getCountFailed()["data"] ?></h4>
-                        </div>
-                        <a class="btn btn-lg btn-primary w-75" href="<?= ROOT ?>/view/listpengajuan.php">Buka list pengajuan &raquo;</a>
+      <h1 class="text-center">WELCOME</h1>
+      <div class="d-flex flex-column">
+            <div class="card py-4 d-flex flex-column align-items-center w-50 mx-auto">
+                  <?php
+                  $pengajuan = getYours();
+                  ?>
+                  <div class="card text-center p-2 w-75 mb-2">
+                        <h4>Surat yang kamu ajukan</h4>
+                        <h4><?= getCount()["data"] ?></h4>
                   </div>
-                  <?php if ($_SESSION["role"] == "MAHASISWA") : ?>
-                        <a class="btn btn-lg btn-primary mt-2 mx-auto w-50" href="<?= ROOT ?>/view/buatpengajuan.php">&plus; Ajukan surat</a>
-                  <?php endif; ?>
+                  <div class="card text-center p-2 w-75 mb-2 bg-success">
+                        <h4 class="text-light">Surat yang diterima</h4>
+                        <h4 class="text-light"><?= getCountSuccess()["data"] ?></h4>
+                  </div>
+                  <div class="card text-center p-2 w-75 mb-2 bg-danger">
+                        <h4 class="text-light">Surat yang ditolak</h4>
+                        <h4 class="text-light"><?= getCountFailed()["data"] ?></h4>
+                  </div>
+                  <a class="btn btn-lg btn-primary w-75" href="<?= ROOT ?>/view/listpengajuan.php">Buka list pengajuan &raquo;</a>
             </div>
-      </main>
+            <?php if ($_SESSION["role"] == "MAHASISWA") : ?>
+                  <a class="btn btn-lg btn-primary mt-2 mx-auto w-50" href="<?= ROOT ?>/view/buatpengajuan.php">&plus; Ajukan surat</a>
+            <?php endif; ?>
+      </div>
 </body>
 
 </html>

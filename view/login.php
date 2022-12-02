@@ -19,10 +19,11 @@ if (isauth()) {
 </head>
 
 <body>
-      <form method="post" class="container">
+      <h1 class="text-center my-2">Masuk</h1>
+      <form method="post" class="container w-25">
             <div class="mb-3">
                   <label for="username" class="form-label">Username</label>
-                  <input type="text" class="form-control" id="username" name="username" >
+                  <input type="text" class="form-control" id="username" name="username">
                   <p id="username-error" class="form-text text-danger"></p>
             </div>
             <div class="mb-3">

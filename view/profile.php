@@ -1,10 +1,13 @@
 <?php
 require_once __DIR__ . "/../env.php";
 require_once __DIR__ . "/../tools.php";
+require_once __DIR__ . "/../model/user_model.php";
 
 session_start();
 loginIfnotAuth();
-echo $_SESSION["role"];
+$user = new User();
+$conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
+$user->setWhereId($conn, $_COOKIE["token"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +38,7 @@ echo $_SESSION["role"];
                   </li>
                   <?php if ($_SESSION["role"] == "MAHASISWA") : ?>
                         <li class="list-unstyled">
-                              <a href="<?= ROOT ?>/view/buatpengajuan.php" class="fw-bold text-light me-5 text-decoration-none">Ajukan</a>
+                              <a href="<?= ROOT ?>/view/buatpengajuan.php" class="text-light me-5 text-decoration-none">Ajukan</a>
                         </li>
                   <?php endif; ?>
                   <li class="list-unstyled">
@@ -46,6 +49,12 @@ echo $_SESSION["role"];
                   </li>
             </ul>
       </nav>
+      <h1 class="text-center">PROFILE</h1>
+      <div class="card w-25 text-center mx-auto p-3">
+            <h1><?= $user->name ?></h1>
+            <h3 class="text-secondary"><?= $user->role ?></h2>
+            <button onclick="logout()" class="mt-5 btn btn-lg btn-danger">Keluar</button>
+      </div>
 </body>
 
 </html>

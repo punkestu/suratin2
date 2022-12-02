@@ -11,6 +11,12 @@ function isauth()
 
       return false;
 }
+function homeIfnotMahasiswa()
+{
+      if ($_SESSION["role"] != "MAHASISWA") {
+            header("location:" . ROOT . "/view/home.php");
+      }
+}
 
 function loginIfnotAuth()
 {

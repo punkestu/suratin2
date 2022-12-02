@@ -128,7 +128,6 @@ class Pengajuan
             } catch (Exception $e) {
                   return ["code" => 400, "data" => $e->getMessage()];
             }
-            return ["code" => 400, "data" => ""];
       }
       public static function count($conn, $createdBy){
             try {
@@ -142,7 +141,6 @@ class Pengajuan
             } catch (Exception $e) {
                   return ["code" => 400, "data" => $e->getMessage()];
             }
-            return ["code" => 400, "data" => ""];
       }
       public static function countStatus($conn, $createdBy, $status){
             try {
@@ -156,7 +154,6 @@ class Pengajuan
             } catch (Exception $e) {
                   return ["code" => 400, "data" => $e->getMessage()];
             }
-            return ["code" => 400, "data" => ""];
       }
       public static function whereForwardTo($conn, $forwardTo)
       {
@@ -176,6 +173,5 @@ class Pengajuan
             } catch (Exception $e) {
                   return ["code" => 400, "data" => $e->getMessage()];
             }
-            return ["code" => 400, "data" => ""];
       }
 }
