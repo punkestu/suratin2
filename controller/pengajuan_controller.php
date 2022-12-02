@@ -56,10 +56,9 @@ if (isset($_GET["want"]) && $_GET["want"] == "tarik") {
       if (isset($_GET["code"])) {
             $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
             $res = Pengajuan::deleteWhereId($conn, $_GET["code"], $_COOKIE["token"]);
-            // if ($res["msg"] == "OK") {
-            //       header("Location: " . ROOT . "/view/listpengajuan.php?error=" . $res['msg'], true, 301);
-            // }
-            var_dump($res);
+            if ($res["msg"] == "OK") {
+                  header("Location: " . ROOT . "/view/listpengajuan.php?error=" . $res['msg'], true, 301);
+            }
       }
-      // header("Location: " . ROOT . "/view/listpengajuan.php?error=nothing", true, 301);
+      header("Location: " . ROOT . "/view/listpengajuan.php?error=nothing", true, 301);
 }
