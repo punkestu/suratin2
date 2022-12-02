@@ -176,6 +176,13 @@ class Pengajuan
       }
 
       public static function deleteWhereId($conn, $id, $user_id){
-            
+            try{
+
+                  $query = "DELETE FROM pengajuan WHERE id='$id' AND created_by='$user_id'";
+                  $conn->query($query);
+                  return ["code" => 200, "msg" => "OK"];
+            }catch(Exception $e){
+                  return ["code" => 400, "msg" => $e->getMessage()];
+            }
       }
 }

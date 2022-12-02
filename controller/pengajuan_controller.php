@@ -7,17 +7,20 @@ function getYours()
       $data = Pengajuan::whereCreatedBy($conn, $_COOKIE["token"]);
       return $data;
 }
-function getCount(){
+function getCount()
+{
       $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
       $data = Pengajuan::count($conn, $_COOKIE["token"]);
       return $data;
 }
-function getCountSuccess(){
+function getCountSuccess()
+{
       $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
       $data = Pengajuan::countStatus($conn, $_COOKIE["token"], "diterima");
       return $data;
 }
-function getCountFailed(){
+function getCountFailed()
+{
       $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
       $data = Pengajuan::countStatus($conn, $_COOKIE["token"], "ditolak");
       return $data;
@@ -49,10 +52,13 @@ function updateStatusPengajuan()
       }
 }
 
-if(isset($_GET["want"]) && $_GET["want"] == "tarik"){
-      if(isset($_GET["code"])){
+if (isset($_GET["want"]) && $_GET["want"] == "tarik") {
+      if (isset($_GET["code"])) {
             $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
-            Pengajuan::deleteWhereId($conn, $_GET["code"], $_COOKIE["token"]);
+            $res = Pengajuan::deleteWhereId($conn, $_GET["code"], $_COOKIE["token"]);
+            if ($res["msg"] == "OK") {
+                  header("Location: " . ROOT . "/view/listpengajuan.php?error=" . $res['msg'], true, 301);
+            }
       }
       header("Location: " . ROOT . "/view/listpengajuan.php", true, 301);
 }
