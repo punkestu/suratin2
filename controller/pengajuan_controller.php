@@ -60,5 +60,5 @@ if (isset($_GET["want"]) && $_GET["want"] == "tarik") {
                   header("Location: " . ROOT . "/view/listpengajuan.php?error=" . $res['msg'], true, 301);
             }
       }
-      header("Location: " . ROOT . "/view/listpengajuan.php", true, 301);
+      header("Location: " . ROOT . "/view/listpengajuan.php?error=nothing", true, 301);
 }
