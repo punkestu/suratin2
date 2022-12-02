@@ -73,8 +73,8 @@ updateStatusPengajuan();
                                     <p>Ditujukan untuk: <?= $d["forward"] ?></p>
                                     <h3 class="<?= $d["status"] == "diterima" ? "text-success" : ($d["status"] == "ditolak" ? "text-danger" : "text-secondary") ?>">Progres: <?= $d["status"] ?></h3>
                               </div>
-                              <a href="<?= ROOT ?>/view/listpengajuan.php?code=<?= $d['id'] ?>" class="btn btn-primary">Detail</a>
-                              <a href="<?= ROOT ?>/view/pengajuan_controller.php?code=<? $d['id'] ?>" class="btn btn-primary">Tarik</a>
+                              <a href="<?= ROOT ?>/view/listpengajuan.php?code=<?= $d['id'] ?>" class="btn btn-primary mb-2">Detail</a>
+                              <a href="<?= ROOT ?>/view/pengajuan_controller.php?code=<? $d['id'] ?>" class="btn btn-danger">Tarik</a>
                         </div>
                   <?php endforeach; ?>
             </div>
