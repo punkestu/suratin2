@@ -44,8 +44,8 @@
         <div class="overflow-auto" style="max-height: 33vh;">
             <?php foreach (getComment($data->id) as $komen) : ?>
                 <div class="card mb-2 p-3">
-                    <p>From: <?= $komen["name"] ?></p>
-                    <h3><?= $komen["komentar"] ?></h3>
+                    <p>From: <?= $komen->name ?></p>
+                    <h3><?= $komen->komentar ?></h3>
                 </div>
             <?php endforeach; ?>
         </div>

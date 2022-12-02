@@ -36,6 +36,17 @@ class Pengajuan
       public $file_hasil;
       public $forward;
 
+      public function __construct($id = NULL, $judul = NULL, $created_at = NULL, $kategori = NULL, $status = NULL, $file = NULL, $file_hasil = NULL, $forward = NULL)
+      {
+            $this->id = $id;
+            $this->judul = $judul;
+            $this->created_at = $created_at;
+            $this->kategori = $kategori;
+            $this->status = $status;
+            $this->file = $file;
+            $this->file_hasil = $file_hasil;
+            $this->forward = $forward;
+      }
       private function set($row)
       {
             $this->id = $row["id"];
@@ -121,7 +132,8 @@ class Pengajuan
 
                         while ($row = $res->fetch_assoc()) {
                               $row["created_at"] = strftime("%d/%b/%Y %R %Z", $row["created_at"]);
-                              array_push($buffer, $row);
+                              // array_push($buffer, $row);
+                              array_push($buffer, new Pengajuan($row["id"], $row["judul"], $row["created_at"], $row["kategori"], $row["status"], $row["file"], $row["file_hasil"], $row["forward"]));
                         }
                         return ["code" => 200, "data" => $buffer];
                   }

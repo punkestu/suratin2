@@ -1,6 +1,16 @@
 <?php
 class Komentar
 {
+      public $id;
+      public $name;
+      public $komentar;
+
+      public function __construct($id, $name, $komentar)
+      {
+            $this->id = $id;
+            $this->name = $name;
+            $this->komentar = $komentar;
+      }
       public static function create($conn, $message, $user_id, $pengajuan_id, $comment_to = NULL)
       {
             $id = uniqid() . uniqid();
@@ -21,7 +31,7 @@ class Komentar
                   $buffer = [];
 
                   while ($row = $res->fetch_assoc()) {
-                        array_push($buffer, $row);
+                        array_push($buffer, new Komentar($row["id"], $row["name"], $row["komentar"]));
                   }
 
                   return $buffer;
