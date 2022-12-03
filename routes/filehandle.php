@@ -5,8 +5,7 @@ require_once __DIR__ . "/../model/notifikasi_model.php";
 $id = uniqid();
 
 $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
-echo "nothing";
-if (isset($_POST["token"])) {
+if (isset($_POST["token"]) && $_POST["token"]!="") {
       $data = new Pengajuan();
       $data->setWhereId($conn, $_COOKIE["token"], $_POST["token"]);
       if (!move_uploaded_file($_FILES['file']['tmp_name'], CONTAINER . $id . ".pdf")) {
@@ -28,6 +27,7 @@ if (isset($_POST["token"])) {
       echo json_encode(["code" => 200, "msg" => $res["data"]]);
       exit();
 } else {
+      echo "nothing";
       if ($_POST["judul"] == "") {
             echo json_encode(["code" => 400, "msg" => "judul harus diisi"]);
             exit();
