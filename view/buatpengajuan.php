@@ -30,7 +30,7 @@ loginIfnotAuth();
       <?php include_once __DIR__ . "/components/navbar.php"; ?>
 
       <h1 class="text-center">BUAT PENGAJUAN BARU</h1>
-      <form method="post" class="container card w-25 p-3">
+      <form method="post" action="<?= ROOT ?>/routes/filehandle.php" class="container card w-25 p-3">
             <hr>
             <div class="mb-2">
                   <label for="judul" class="form-label">Judul</label>
@@ -68,72 +68,72 @@ loginIfnotAuth();
             <button id="upload" class="btn btn-primary">Ajukan</button>
       </form>
       <script>
-            const ajukan = e => {
-                  console.log("pengajuan...");
-                  e.preventDefault();
+            // const ajukan = e => {
+            //       console.log("pengajuan...");
+            //       e.preventDefault();
 
-                  $("#surat-error").html("");
-                  $("#judul-error").html("");
-                  error = false;
+            //       $("#surat-error").html("");
+            //       $("#judul-error").html("");
+            //       error = false;
 
-                  if ($("#surat")[0].files.length == 0) {
-                        $("#surat-error").html("file harus diisi");
-                        error = true;
-                  }
+            //       if ($("#surat")[0].files.length == 0) {
+            //             $("#surat-error").html("file harus diisi");
+            //             error = true;
+            //       }
 
-                  if ($("#judul").val() == "") {
-                        $("#judul-error").html("judul harus diisi");
-                        error = true;
-                  }
-                  if (error) {
-                        return;
-                  }
+            //       if ($("#judul").val() == "") {
+            //             $("#judul-error").html("judul harus diisi");
+            //             error = true;
+            //       }
+            //       if (error) {
+            //             return;
+            //       }
 
-                  console.log("validation surat...");
-                  if ($("#surat")[0].files[0].size > 20 * 1000 * 1024) {
-                        error = true;
-                        $("#surat-error").append("ukuran file terlalu besar <br>");
-                  }
-                  if ($("#surat")[0].files[0].type != "application/pdf") {
-                        error = true;
-                        $("#surat-error").append("hanya bisa mengirim file pdf <br>");
-                  }
-                  if (error) {
-                        return;
-                  }
+            //       console.log("validation surat...");
+            //       if ($("#surat")[0].files[0].size > 20 * 1000 * 1024) {
+            //             error = true;
+            //             $("#surat-error").append("ukuran file terlalu besar <br>");
+            //       }
+            //       if ($("#surat")[0].files[0].type != "application/pdf") {
+            //             error = true;
+            //             $("#surat-error").append("hanya bisa mengirim file pdf <br>");
+            //       }
+            //       if (error) {
+            //             return;
+            //       }
 
-                  console.log("forming surat...");
-                  var file_data = $('#surat').prop('files')[0];
-                  var form_data = new FormData();
-                  form_data.append("file", file_data);
-                  form_data.append("kategori", $("#kategori").val());
-                  form_data.append("judul", $("#judul").val());
-                  form_data.append("dosen", $("#dosen").val());
+            //       console.log("forming surat...");
+            //       var file_data = $('#surat').prop('files')[0];
+            //       var form_data = new FormData();
+            //       form_data.append("file", file_data);
+            //       form_data.append("kategori", $("#kategori").val());
+            //       form_data.append("judul", $("#judul").val());
+            //       form_data.append("dosen", $("#dosen").val());
 
-                  console.log("kirim surat...");
-                  $.post('<?= ROOT ?>/routes/filehandle.php').catch(err => console.log(err));
-                  $.ajax({
-                        url: '<?= ROOT ?>/routes/filehandle.php',
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        data: form_data,
-                        type: 'post',
-                  }).then((data, status, jqXHR) => {
-                        console.log(data);
-                        data = JSON.parse(data);
-                        if (data["code"] == 200) {
-                              $("#surat-error").html("success");
-                              window.location.replace("<?= ROOT ?>/view/home.php");
-                        } else if (data["code"] == 500) {
-                              $("#surat-error").html("error: " + data["msg"]);
-                        }
-                  }).catch(err => {
-                        console.log(err);
-                  });
-                  console.log("end...");
-            }
-            $("form").submit(ajukan);
+            //       console.log("kirim surat...");
+            //       $.post('<?= ROOT ?>/routes/filehandle.php').catch(err => console.log(err));
+            //       $.ajax({
+            //             url: '<?= ROOT ?>/routes/filehandle.php',
+            //             cache: false,
+            //             contentType: false,
+            //             processData: false,
+            //             data: form_data,
+            //             type: 'post',
+            //       }).then((data, status, jqXHR) => {
+            //             console.log(data);
+            //             data = JSON.parse(data);
+            //             if (data["code"] == 200) {
+            //                   $("#surat-error").html("success");
+            //                   window.location.replace("<?= ROOT ?>/view/home.php");
+            //             } else if (data["code"] == 500) {
+            //                   $("#surat-error").html("error: " + data["msg"]);
+            //             }
+            //       }).catch(err => {
+            //             console.log(err);
+            //       });
+            //       console.log("end...");
+            // }
+            // $("form").submit(ajukan);
       </script>
 </body>
 
