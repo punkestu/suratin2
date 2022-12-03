@@ -3,6 +3,7 @@ require_once __DIR__ . "/../model/pengajuan_model.php";
 require_once __DIR__ . "/../model/notifikasi_model.php";
 
 echo "noting";
+http_response_code(400);
 exit();
 
 if (0 < $_FILES['file']['error']) {
