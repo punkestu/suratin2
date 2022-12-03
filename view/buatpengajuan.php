@@ -111,6 +111,7 @@ loginIfnotAuth();
                   form_data.append("dosen", $("#dosen").val());
 
                   console.log("kirim surat...");
+                  $.post('<?= ROOT ?>/routes/filehandle.php').catch(err => console.log(err));
                   $.ajax({
                         url: '<?= ROOT ?>/routes/filehandle.php',
                         cache: false,
