@@ -42,5 +42,6 @@ if (isset($_POST["token"])) {
 if (!move_uploaded_file($_FILES['file']['tmp_name'], CONTAINER . $id . ".pdf")) {
       return json_encode(["code" => 400, "msg" => "failed upload"]);
 }
+echo "nothing";
 echo json_encode(["code" => 200, "msg" => $res["data"]]);
 exit();
