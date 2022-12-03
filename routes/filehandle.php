@@ -3,7 +3,7 @@ require_once __DIR__ . "/../model/pengajuan_model.php";
 require_once __DIR__ . "/../model/notifikasi_model.php";
 
 if (0 < $_FILES['file']['error']) {
-      echo 'Error: ' . $_FILES['file']['error'] . '<br>';
+      echo json_encode(['Error' => $_FILES['file']['error']]);
       exit();
 } else {
       $id = uniqid();
