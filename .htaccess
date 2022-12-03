@@ -1,7 +1,7 @@
 Options -Multiviews
 RewriteEngine On
 
-RewriteRule ^pengajuan/(.*)$ tia/tia212410102042/uas/view/listpengajuan.php?code=$1
+RewriteRule ^pengajuan/(.*)$ view/listpengajuan.php?code=$1
 RewriteRule ^tarik/(.*)$ routes/tarik.php?code=$1
 RewriteRule ^ajukan view/buatpengajuan.php
 RewriteRule ^profile view/profile.php

@@ -19,7 +19,7 @@ loginIfnotAuth();
       <script>
             const logout = () => {
                   document.cookie = "token=; path=/"
-                  window.location.replace("<?= ROOT ?>/login/");
+                  window.location.replace("<?= ROOT ?>/view/login.php");
             }
       </script>
 </head>
@@ -45,10 +45,10 @@ loginIfnotAuth();
                         <h4 class="text-light">Surat yang ditolak</h4>
                         <h4 class="text-light"><?= getCountFailed()["data"] ?></h4>
                   </div>
-                  <a class="btn btn-lg btn-primary w-75" href="<?= ROOT ?>/pengajuan/">Buka list pengajuan &raquo;</a>
+                  <a class="btn btn-lg btn-primary w-75" href="<?= ROOT ?>/view/listpengajuan.php?code=">Buka list pengajuan &raquo;</a>
             </div>
             <?php if ($_SESSION["role"] == "MAHASISWA") : ?>
-                  <a class="btn btn-lg btn-primary mt-2 mx-auto w-50" href="<?= ROOT ?>/ajukan/">&plus; Ajukan surat</a>
+                  <a class="btn btn-lg btn-primary mt-2 mx-auto w-50" href="<?= ROOT ?>/view/buatpengajuan.php">&plus; Ajukan surat</a>
             <?php endif; ?>
       </div>
 </body>

@@ -21,7 +21,7 @@ loginIfnotAuth();
       <script>
             const logout = () => {
                   document.cookie = "token=; path=/"
-                  window.location.replace("<?= ROOT ?>/login/");
+                  window.location.replace("<?= ROOT ?>/view/login.php");
             }
       </script>
 </head>
@@ -106,7 +106,7 @@ loginIfnotAuth();
                   form_data.append("judul", $("#judul").val());
                   form_data.append("dosen", $("#dosen").val());
                   $.ajax({
-                        url: '<?= ROOT ?>/files/',
+                        url: '<?= ROOT ?>/routes/filehandle.php',
                         cache: false,
                         contentType: false,
                         processData: false,

@@ -53,7 +53,7 @@ if (isauth()) {
                         username: $("#username").val(),
                         password: $("#password").val()
                   }, (data, status, jqXHR) => {
-                        window.location.replace("<?= ROOT ?>/home/");
+                        window.location.replace("<?= ROOT ?>/view/home.php");
                   }).catch(err => {
                         err = JSON.parse(err.responseText);
                         $("#name-error").html(err["msg"]["name"] || "");

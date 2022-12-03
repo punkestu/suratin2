@@ -1,9 +1,11 @@
 <?php
+require_once __DIR__ . "/../tools.php";
 require_once __DIR__ . "/../env.php";
 require_once __DIR__ . "/../controller/notifikasi_controller.php";
 require_once __DIR__ . "/../controller/user_controller.php";
 
 session_start();
+loginIfnotAuth();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +19,7 @@ session_start();
     <script>
         const logout = () => {
             document.cookie = "token=; path=/"
-            window.location.replace("<?= ROOT ?>/login/");
+            window.location.replace("<?= ROOT ?>/view/login.php");
         }
     </script>
 </head>

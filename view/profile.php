@@ -21,7 +21,7 @@ $user->setWhereId($conn, $_COOKIE["token"]);
       <script>
             const logout = () => {
                   document.cookie = "token=; path=/"
-                  window.location.replace("<?= ROOT ?>/login/");
+                  window.location.replace("<?= ROOT ?>/view/login.php");
             }
       </script>
 </head>

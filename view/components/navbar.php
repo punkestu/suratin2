@@ -6,21 +6,21 @@ require_once __DIR__ . "/../../controller/notifikasi_controller.php";
     <a class="navbar-brand" href="<?= ROOT ?>/view/home.php">Surat.in</a>
     <ul class="my-3 d-flex align-items-center">
         <li class="list-unstyled">
-            <a href="<?= ROOT ?>/home/" class="text-light me-5 text-decoration-none">Home</a>
+            <a href="<?= ROOT ?>/view/home.php" class="text-light me-5 text-decoration-none">Home</a>
         </li>
         <li class="list-unstyled">
-            <a href="<?= ROOT ?>/pengajuan/" class="text-light me-5 text-decoration-none">Suratmu</a>
+            <a href="<?= ROOT ?>/view/listpengajuan.php?code=" class="text-light me-5 text-decoration-none">Suratmu</a>
         </li>
         <?php if ($_SESSION["role"] == "MAHASISWA") : ?>
             <li class="list-unstyled">
-                <a href="<?= ROOT ?>/ajukan/" class="text-light me-5 text-decoration-none">Ajukan</a>
+                <a href="<?= ROOT ?>/view/buatpengajuan.php" class="text-light me-5 text-decoration-none">Ajukan</a>
             </li>
         <?php endif; ?>
         <li class="list-unstyled">
-            <a href="<?= ROOT ?>/notification/" class="<?= getNotificationCount() > 0 ? "bg-warning text-dark" : "text-light" ?> p-2 rounded me-5 text-decoration-none">Notifikasi</a>
+            <a href="<?= ROOT ?>/view/notifikasi.php" class="<?= getNotificationCount() > 0 ? "bg-warning text-dark" : "text-light" ?> p-2 rounded me-5 text-decoration-none">Notifikasi</a>
         </li>
         <li class="list-unstyled">
-            <a href="<?= ROOT ?>/profile/" class="text-light me-5 text-decoration-none">Profile</a>
+            <a href="<?= ROOT ?>/view/profile.php" class="text-light me-5 text-decoration-none">Profile</a>
         </li>
         <li class="list-unstyled">
             <button onclick="logout()" class="btn btn-danger">Keluar</button>

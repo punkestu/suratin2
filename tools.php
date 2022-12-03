@@ -14,13 +14,13 @@ function isauth()
 function homeIfnotMahasiswa()
 {
       if ($_SESSION["role"] != "MAHASISWA") {
-            header("location:" . ROOT . "/home/");
+            header("location:" . ROOT . "/view/home.php");
       }
 }
 
 function loginIfnotAuth()
 {
       if (!isauth()) {
-            header("location:" . ROOT . "/login/");
+            header("location:" . ROOT . "/view/login.php");
       }
 }
