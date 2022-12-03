@@ -1,7 +1,4 @@
 <?php
-echo "noting";
-http_response_code(400);
-exit();
 require_once __DIR__ . "/../model/pengajuan_model.php";
 require_once __DIR__ . "/../model/notifikasi_model.php";
 
