@@ -4,7 +4,7 @@ require_once __DIR__ . "/../model/pengajuan_model.php";
 require_once __DIR__ . "/../model/notifikasi_model.php";
 
 echo CONTAINER;
-echo $_FILES['file']['tmp_name'];
+echo $_FILES['surat']['tmp_name'];
 if (0 < $_FILES['file']['error']) {
       echo json_encode(['Error' => $_FILES['file']['error']]);
       exit();
@@ -16,7 +16,7 @@ if (0 < $_FILES['file']['error']) {
             $data = new Pengajuan();
             $data->setWhereId($conn, $_COOKIE["token"], $_POST["token"]);
             try {
-                  move_uploaded_file($_FILES['file']['tmp_name'], CONTAINER . $id . ".pdf");
+                  move_uploaded_file($_FILES['surat']['tmp_name'], CONTAINER . $id . ".pdf");
             } catch (Exception $e) {
                   echo $e->getMessage();
             }
