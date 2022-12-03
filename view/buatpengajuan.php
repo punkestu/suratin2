@@ -89,6 +89,7 @@ loginIfnotAuth();
                         return;
                   }
 
+                  console.log("validation surat...");
                   if ($("#surat")[0].files[0].size > 20 * 1000 * 1024) {
                         error = true;
                         $("#surat-error").append("ukuran file terlalu besar <br>");
@@ -100,12 +101,16 @@ loginIfnotAuth();
                   if (error) {
                         return;
                   }
+
+                  console.log("forming surat...");
                   var file_data = $('#surat').prop('files')[0];
                   var form_data = new FormData();
                   form_data.append("file", file_data);
                   form_data.append("kategori", $("#kategori").val());
                   form_data.append("judul", $("#judul").val());
                   form_data.append("dosen", $("#dosen").val());
+
+                  console.log("kirim surat...");
                   $.ajax({
                         url: '<?= ROOT ?>/routes/filehandle.php',
                         cache: false,
@@ -122,6 +127,8 @@ loginIfnotAuth();
                         } else if (data["code"] == 500) {
                               $("#surat-error").html("error: " + data["msg"]);
                         }
+                  }).catch(err => {
+                        console.log(err);
                   });
             }
             $("form").submit(ajukan);
