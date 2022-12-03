@@ -9,3 +9,4 @@ session_start();
 $_SESSION["error"] = "pass";
 
 header("Location: " . ROOT . "/view/listpengajuan.php?code=", true, 301);
+exit();
