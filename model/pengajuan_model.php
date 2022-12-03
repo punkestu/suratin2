@@ -169,7 +169,7 @@ class Pengajuan
       public static function whereForwardTo($conn, $forwardTo)
       {
             try {
-                  $query = "SELECT p.id as id, judul, created_at, kategori, s.status as status, file, file_hasil, name as forward FROM pengajuan p JOIN file_surat fs ON fs.id = p.file JOIN kategori_surat ks ON fs.kategori_id = ks.kode JOIN users u ON u.id = p.forwarded_to JOIN status s ON s.kode = p.status WHERE forwarded_to='$forwardTo' ORDER BY created_at;";
+                  $query = "SELECT p.id as id, judul, created_at, kategori, s.status as status, file, file_hasil, name as forward FROM pengajuan p JOIN file_surat fs ON fs.id = p.file JOIN kategori_surat ks ON fs.kategori_id = ks.kode JOIN users u ON u.id = p.forwarded_to JOIN status s ON s.kode = p.status WHERE forwarded_to='$forwardTo' ORDER BY created_at DESC;";
                   $res = $conn->query($query);
                   if ($res->num_rows > 0) {
                         $buffer = [];

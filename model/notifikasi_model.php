@@ -33,7 +33,7 @@ class Notifikasi
 
     public static function isFor($conn, $user_id)
     {
-        $query = "SELECT n.id as id, n.pengajuan_id as pengajuan, p.judul, msg, u.name FROM notifikasi n JOIN pengajuan p ON n.pengajuan_id = p.id JOIN users u ON u.id = who WHERE who <> '$user_id' AND (p.created_by = '$user_id' OR p.forwarded_to = '$user_id') ORDER BY n.created_at;";
+        $query = "SELECT n.id as id, n.pengajuan_id as pengajuan, p.judul, msg, u.name FROM notifikasi n JOIN pengajuan p ON n.pengajuan_id = p.id JOIN users u ON u.id = who WHERE who <> '$user_id' AND (p.created_by = '$user_id' OR p.forwarded_to = '$user_id') ORDER BY n.created_at DESC;";
         try {
             $res = $conn->query($query);
             if ($res->num_rows > 0) {
