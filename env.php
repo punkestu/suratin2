@@ -1,5 +1,5 @@
 <?php
-define("HOST", "localhost");
+define("HOST", "0.0.0.0");
 define("USERNAME", "tia212410102042");
 define("PASSWORD", "secret");
 define("DB", "uas212410102042");
