@@ -32,7 +32,6 @@ if (isset($_POST["token"]) && $_POST["token"]!="") {
             exit();
       }
       $res = Pengajuan::create($conn, $_POST["judul"], $_COOKIE["token"], $_POST["dosen"], $id, $_POST["kategori"]);
-      echo "nothing";
       if ($res["data"] == "") {
             echo json_encode(["code" => 500, "msg" => $res["msg"]]);
             exit();
@@ -40,6 +39,7 @@ if (isset($_POST["token"]) && $_POST["token"]!="") {
       Notifikasi::push($conn, $res["data"], $_COOKIE["token"], "membuat pengajuan baru");
 }
 
+echo "nothing";
 if (!move_uploaded_file($_FILES['file']['tmp_name'], CONTAINER . $id . ".pdf")) {
       return json_encode(["code" => 400, "msg" => "failed upload"]);
 }
