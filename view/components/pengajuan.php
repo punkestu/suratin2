@@ -23,7 +23,7 @@
         <a class="btn btn-primary flex-fill" href="<?= ROOT ?>/container/<?= $data->file ?>.pdf" target="_blank">Lihat surat</a>
     </div>
 
-    <?php if ($_SESSION["role"] != "MAHASISWA" && $data->file_hasil == NULL) : ?>
+    <?php if ($_SESSION["role"] != "MAHASISWA") : ?>
         <div class="d-flex gap-3">
             <?php if ($data->status != "diterima") : ?>
                 <a class="btn btn-success flex-fill" href="<?= ROOT ?>/view/listpengajuan.php?accept=<?= $data->id ?>">Terima</a>
