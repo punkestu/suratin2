@@ -74,7 +74,7 @@
         form_data.append("file", file_data);
         form_data.append("token", "<?= $data->id ?>");
         $.ajax({
-            url: '<?= ROOT ?>/routes/filehandle.php',
+            url: '<?= ROOT ?>/files/',
             cache: false,
             contentType: false,
             processData: false,

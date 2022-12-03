@@ -47,12 +47,11 @@ if (isauth()) {
       <script>
             const register = e => {
                   e.preventDefault();
-                  $.post("<?= ROOT ?>/routes/auth.php", {
+                  $.post("<?= ROOT ?>/authregister/", {
                         name: $("#name").val(),
                         email: $("#email").val(),
                         username: $("#username").val(),
-                        password: $("#password").val(),
-                        to: "register"
+                        password: $("#password").val()
                   }, (data, status, jqXHR) => {
                         window.location.replace("<?= ROOT ?>/home/");
                   }).catch(err => {

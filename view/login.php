@@ -37,10 +37,9 @@ if (isauth()) {
       <script>
             const login = e => {
                   e.preventDefault();
-                  $.post("<?= ROOT ?>/routes/auth.php", {
+                  $.post("<?= ROOT ?>/authlogin/", {
                         username: $("#username").val(),
-                        password: $("#password").val(),
-                        to: "login"
+                        password: $("#password").val()
                   }).then((data, status, jqXHR) => {
                         window.location.replace("<?= ROOT ?>/home/");
                   }).catch((err) => {

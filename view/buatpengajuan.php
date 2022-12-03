@@ -41,7 +41,7 @@ loginIfnotAuth();
                   <label for="dosen" class="form-label">Tujuan</label>
                   <select name="dosen" id="dosen" class="form-select">
                         <?php foreach (getDosen() as $d) : ?>
-                              <option value="<?= $d["id"] ?>"> <?= $d["name"] ?></option>
+                              <option value="<?= $d->id ?>"> <?= $d->name ?></option>
                         <?php endforeach; ?>
                   </select>
                   <p class="form-text text-danger" id="dosen-error"></p>
@@ -106,7 +106,7 @@ loginIfnotAuth();
                   form_data.append("judul", $("#judul").val());
                   form_data.append("dosen", $("#dosen").val());
                   $.ajax({
-                        url: '<?= ROOT ?>/routes/filehandle.php',
+                        url: '<?= ROOT ?>/files/',
                         cache: false,
                         contentType: false,
                         processData: false,

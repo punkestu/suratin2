@@ -44,16 +44,16 @@ updateStatusPengajuan();
                   <?php endif;
                   foreach ($data["data"] as $d) : ?>
                         <div class="card w-50 mb-2 p-4">
-                              <h1 class="card-title"><?= ucwords($d["judul"]) ?></h1>
-                              <h4 class="text-secondary"><?= ucwords($d["kategori"]) ?></h4>
+                              <h1 class="card-title"><?= ucwords($d->judul) ?></h1>
+                              <h4 class="text-secondary"><?= ucwords($d->kategori) ?></h4>
                               <hr>
                               <div class="card-body">
-                                    <p>Diajukan pada: <?= $d["created_at"] ?></p>
-                                    <p>Ditujukan untuk: <?= $d["forward"] ?></p>
-                                    <h3 class="<?= $d["status"] == "diterima" ? "text-success" : ($d["status"] == "ditolak" ? "text-danger" : "text-secondary") ?>">Progres: <?= $d["status"] ?></h3>
+                                    <p>Diajukan pada: <?= $d->created_at ?></p>
+                                    <p>Ditujukan untuk: <?= $d->forward ?></p>
+                                    <h3 class="<?= $d->status == "diterima" ? "text-success" : ($d->status == "ditolak" ? "text-danger" : "text-secondary") ?>">Progres: <?= $d->status ?></h3>
                               </div>
-                              <a href="<?= ROOT ?>/pengajuan/<?= $d['id'] ?>" class="btn btn-primary mb-2">Detail</a>
-                              <a href="<?= ROOT ?>/tarik/<?= $d['id'] ?>" class="btn btn-danger">Tarik</a>
+                              <a href="<?= ROOT ?>/pengajuan/<?= $d->id ?>" class="btn btn-primary mb-2">Detail</a>
+                              <a href="<?= ROOT ?>/tarik/<?= $d->id ?>" class="btn btn-danger">Tarik</a>
                         </div>
                   <?php endforeach; ?>
             </div>

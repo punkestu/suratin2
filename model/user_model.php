@@ -21,6 +21,15 @@ class User
       public $role;
       public $password;
 
+      public function __construct($id = NULL, $username = NULL, $name = NULL, $role = NULL, $password = NULL)
+      {
+            $this->id = $id;
+            $this->username = $username;
+            $this->name = $name;
+            $this->role = $role;
+            $this->password = $password;
+      }
+
       private function set($row)
       {
             $this->id = $row["id"];
@@ -29,7 +38,8 @@ class User
             $this->name = $row["name"];
             $this->role = $row["role"];
       }
-      public function setWhereId($conn, $userid){
+      public function setWhereId($conn, $userid)
+      {
             $query = "SELECT id, username, password, name, role_name as role FROM users u JOIN role_user ru ON ru.kode = u.kode_role WHERE id = '$userid'";
             $res = $conn->query($query);
             if ($res->num_rows > 0) {
@@ -79,7 +89,8 @@ class User
                   $buffer = [];
 
                   while ($row = $res->fetch_assoc()) {
-                        array_push($buffer, $row);
+                        //array_push($buffer, $row);
+                        array_push($buffer, new User(id:$row["id"], name:$row["name"]));
                   }
 
                   return $buffer;
