@@ -39,9 +39,10 @@ if (isset($_POST["token"]) && $_POST["token"]!="") {
       Notifikasi::push($conn, $res["data"], $_COOKIE["token"], "membuat pengajuan baru");
 }
 
-echo "nothing";
+//echo "nothing";
 if (!move_uploaded_file($_FILES['file']['tmp_name'], CONTAINER . $id . ".pdf")) {
-      return json_encode(["code" => 400, "msg" => "failed upload"]);
+      echo json_encode(["code" => 400, "msg" => "failed upload"]);
+      exit();
 }
 echo json_encode(["code" => 200, "msg" => $res["data"]]);
 exit();
