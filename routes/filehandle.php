@@ -27,12 +27,12 @@ if (isset($_POST["token"]) && $_POST["token"]!="") {
       echo json_encode(["code" => 200, "msg" => $res["data"]]);
       exit();
 } else {
-      echo "nothing";
       if ($_POST["judul"] == "") {
             echo json_encode(["code" => 400, "msg" => "judul harus diisi"]);
             exit();
       }
       $res = Pengajuan::create($conn, $_POST["judul"], $_COOKIE["token"], $_POST["dosen"], $id, $_POST["kategori"]);
+      echo "nothing";
       if ($res["data"] == "") {
             echo json_encode(["code" => 500, "msg" => $res["msg"]]);
             exit();
