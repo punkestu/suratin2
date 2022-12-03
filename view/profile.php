@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . "/../env.php";
 require_once __DIR__ . "/../tools.php";
+require_once __DIR__ . "/../env.php";
 require_once __DIR__ . "/../model/user_model.php";
 
 session_start();

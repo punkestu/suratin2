@@ -1,5 +1,4 @@
 <?php
-require __DIR__ . "/../env.php";
 require __DIR__ . "/user_model.php";
 
 function translateStatus($conn, $status)
@@ -132,7 +131,6 @@ class Pengajuan
 
                         while ($row = $res->fetch_assoc()) {
                               $row["created_at"] = strftime("%d/%b/%Y %R %Z", $row["created_at"]);
-                              // array_push($buffer, $row);
                               array_push($buffer, new Pengajuan($row["id"], $row["judul"], $row["created_at"], $row["kategori"], $row["status"], $row["file"], $row["file_hasil"], $row["forward"]));
                         }
                         return ["code" => 200, "data" => $buffer];

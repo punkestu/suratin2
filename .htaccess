@@ -8,6 +8,7 @@ RewriteRule ^profile view/profile.php
 RewriteRule ^home view/home.php
 RewriteRule ^login view/login.php
 RewriteRule ^register view/register.php
+RewriteRule ^notification view/notifikasi.php
 
 RewriteRule ^files routes/filehandle.php
 RewriteRule ^authlogin routes/login.php

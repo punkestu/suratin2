@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../model/pengajuan_model.php";
+require_once __DIR__ . "/../model/notifikasi_model.php";
 
 function getYours()
 {
@@ -44,10 +45,12 @@ function updateStatusPengajuan()
             $data = getById($_GET["accept"]);
             $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
             $data->updateStatus($conn, "diterima");
+            Notifikasi::push($conn, $data->id, $_COOKIE["token"], "menerima pengajuan");
       }
       if (isset($_GET["reject"])) {
             $data = getById($_GET["reject"]);
             $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
             $data->updateStatus($conn, "ditolak");
+            Notifikasi::push($conn, $data->id, $_COOKIE["token"], "menolak pengajuan");
       }
 }

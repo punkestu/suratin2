@@ -90,7 +90,7 @@ class User
 
                   while ($row = $res->fetch_assoc()) {
                         //array_push($buffer, $row);
-                        array_push($buffer, new User(id:$row["id"], name:$row["name"]));
+                        array_push($buffer, new User(id: $row["id"], name: $row["name"]));
                   }
 
                   return $buffer;

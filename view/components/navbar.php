@@ -1,6 +1,10 @@
-<nav class="navbar navbar-expand-lg py-0 pt-3 px-3 d-flex justify-content-between bg-primary navbar-dark mb-3">
+<?php
+require_once __DIR__ . "/../../controller/notifikasi_controller.php";
+?>
+
+<nav class="navbar navbar-expand-lg py-0 px-3 d-flex align-items-center justify-content-between bg-primary navbar-dark mb-3">
     <a class="navbar-brand" href="<?= ROOT ?>/view/home.php">Surat.in</a>
-    <ul class="d-flex align-items-center">
+    <ul class="my-3 d-flex align-items-center">
         <li class="list-unstyled">
             <a href="<?= ROOT ?>/home/" class="text-light me-5 text-decoration-none">Home</a>
         </li>
@@ -12,6 +16,9 @@
                 <a href="<?= ROOT ?>/ajukan/" class="text-light me-5 text-decoration-none">Ajukan</a>
             </li>
         <?php endif; ?>
+        <li class="list-unstyled">
+            <a href="<?= ROOT ?>/notification/" class="<?= getNotificationCount() > 0 ? "bg-warning text-dark" : "text-light" ?> p-2 rounded me-5 text-decoration-none">Notifikasi</a>
+        </li>
         <li class="list-unstyled">
             <a href="<?= ROOT ?>/profile/" class="text-light me-5 text-decoration-none">Profile</a>
         </li>

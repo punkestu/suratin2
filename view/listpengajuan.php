@@ -1,7 +1,8 @@
 <?php
+require_once __DIR__ . "/../tools.php";
+
 require_once __DIR__ . "/../controller/pengajuan_controller.php";
 require_once __DIR__ . "/../controller/komentar_controller.php";
-require_once __DIR__ . "/../tools.php";
 
 session_start();
 loginIfnotAuth();
@@ -53,7 +54,9 @@ updateStatusPengajuan();
                                     <h3 class="<?= $d->status == "diterima" ? "text-success" : ($d->status == "ditolak" ? "text-danger" : "text-secondary") ?>">Progres: <?= $d->status ?></h3>
                               </div>
                               <a href="<?= ROOT ?>/pengajuan/<?= $d->id ?>" class="btn btn-primary mb-2">Detail</a>
-                              <a href="<?= ROOT ?>/tarik/<?= $d->id ?>" class="btn btn-danger">Tarik</a>
+                              <?php if ($_SESSION["role"] == "MAHASISWA") : ?>
+                                    <a href="<?= ROOT ?>/tarik/<?= $d->id ?>" class="btn btn-danger">Tarik</a>
+                              <?php endif; ?>
                         </div>
                   <?php endforeach; ?>
             </div>
