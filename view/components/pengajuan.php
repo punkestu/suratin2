@@ -10,6 +10,7 @@
             <div class="mb-3">
                 <label for="file_hasil" class="form-label"><?= $_SESSION["role"] == "MAHASISWA" ? "Revisi surat" : "Upload file tanda tangan" ?></label>
                 <input class="form-control" type="file" id="file_hasil" name="file_hasil">
+                <input type="hidden" name="token" value="<?= $data->id ?>">
                 <p id="surat-error"></p>
                 <button type="submit" class="btn btn-outline-primary w-100">Upload</button>
             </div>
