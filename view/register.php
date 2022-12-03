@@ -47,7 +47,7 @@ if (isauth()) {
       <script>
             const register = e => {
                   e.preventDefault();
-                  $.post("<?= ROOT ?>/authregister/", {
+                  $.post("<?= ROOT ?>/routes/register.php", {
                         name: $("#name").val(),
                         email: $("#email").val(),
                         username: $("#username").val(),
