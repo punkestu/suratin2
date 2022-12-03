@@ -113,6 +113,7 @@ loginIfnotAuth();
                         data: form_data,
                         type: 'post',
                   }).then((data, status, jqXHR) => {
+                        console.log(data);
                         data = JSON.parse(data);
                         if (data["code"] == 200) {
                               $("#surat-error").html("success");
