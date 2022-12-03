@@ -6,7 +6,7 @@
 
     <hr>
     <?php if (!$data->file_hasil && (str_contains($data->kategori, "tanda tangan") || $_SESSION["role"] == "MAHASISWA")) : ?>
-        <form method="post" id="upload">
+        <form method="post" action="<?= ROOT ?>/routes/filehandle.php" id="upload">
             <div class="mb-3">
                 <label for="file_hasil" class="form-label"><?= $_SESSION["role"] == "MAHASISWA" ? "Revisi surat" : "Upload file tanda tangan" ?></label>
                 <input class="form-control" type="file" id="file_hasil" name="file_hasil">
@@ -54,7 +54,7 @@
 </div>
 <script>
     const upload_filehasil = e => {
-        e.preventDefault();
+        // e.preventDefault();
 
         $("#surat-error").html("");
         error = false;
@@ -67,29 +67,29 @@
             $("#surat-error").append("hanya bisa mengirim file pdf <br>");
         }
         if (error) {
-            return;
+            return false;
         }
-        var file_data = $("#file_hasil").prop('files')[0];
-        var form_data = new FormData();
-        form_data.append("file", file_data);
-        form_data.append("token", "<?= $data->id ?>");
-        $.ajax({
-            url: '<?= ROOT ?>/routes/filehandle.php',
-            dataType: "text",
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            type: 'post',
-        }).then((data, status, jqXHR) => {
-            data = JSON.parse(data);
-            if (data["code"] == 200) {
-                $("#surat-error").html("success");
-                location.reload();
-            } else if (data["code"] == 400) {
-                $("#surat-error").html("error: " + data["msg"]);
-            }
-        });
+        // var file_data = $("#file_hasil").prop('files')[0];
+        // var form_data = new FormData();
+        // form_data.append("file", file_data);
+        // form_data.append("token", "<?= $data->id ?>");
+        // $.ajax({
+        //     url: '<?= ROOT ?>/routes/filehandle.php',
+        //     dataType: "text",
+        //     cache: false,
+        //     contentType: false,
+        //     processData: false,
+        //     data: form_data,
+        //     type: 'post',
+        // }).then((data, status, jqXHR) => {
+        //     data = JSON.parse(data);
+        //     if (data["code"] == 200) {
+        //         $("#surat-error").html("success");
+        //         location.reload();
+        //     } else if (data["code"] == 400) {
+        //         $("#surat-error").html("error: " + data["msg"]);
+        //     }
+        // });
     }
     const komentar = (e) => {
         e.preventDefault();
