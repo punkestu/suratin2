@@ -1,7 +1,4 @@
 <?php
-echo "noting";
-http_response_code(400);
-exit();
 require_once __DIR__ . "/../model/pengajuan_model.php";
 require_once __DIR__ . "/../model/notifikasi_model.php";
 
@@ -16,7 +13,9 @@ if (0 < $_FILES['file']['error']) {
       if (isset($_POST["token"])) {
             $data = new Pengajuan();
             $data->setWhereId($conn, $_COOKIE["token"], $_POST["token"]);
-            move_uploaded_file($_FILES['file']['tmp_name'], CONTAINER . $id . ".pdf");
+            if (!move_uploaded_file($_FILES['file']['tmp_name'], CONTAINER . $id . ".pdf")) {
+                  return json_encode(["code" => 400, "msg" => "failed upload"]);
+            }
             $res = NULL;
             session_start();
             if ($_SESSION["role"] != "MAHASISWA") {
@@ -44,7 +43,10 @@ if (0 < $_FILES['file']['error']) {
             }
             Notifikasi::push($conn, $res["data"], $_COOKIE["token"], "membuat pengajuan baru");
       }
-      move_uploaded_file($_FILES['file']['tmp_name'], CONTAINER . $id . ".pdf");
+
+      if (!move_uploaded_file($_FILES['file']['tmp_name'], CONTAINER . $id . ".pdf")) {
+            return json_encode(["code" => 400, "msg" => "failed upload"]);
+      }
       echo json_encode(["code" => 200, "msg" => $res["data"]]);
       exit();
 }

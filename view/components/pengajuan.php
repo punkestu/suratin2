@@ -6,7 +6,7 @@
 
     <hr>
     <?php if (!$data->file_hasil && (str_contains($data->kategori, "tanda tangan") || $_SESSION["role"] == "MAHASISWA")) : ?>
-        <form method="post" id="upload">
+        <form method="post" enctype="multipart/form-data" id="upload">
             <div class="mb-3">
                 <label for="file_hasil" class="form-label"><?= $_SESSION["role"] == "MAHASISWA" ? "Revisi surat" : "Upload file tanda tangan" ?></label>
                 <input class="form-control" type="file" id="file_hasil" name="file_hasil">
