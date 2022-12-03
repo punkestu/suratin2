@@ -13,7 +13,11 @@ if (0 < $_FILES['file']['error']) {
       if (isset($_POST["token"])) {
             $data = new Pengajuan();
             $data->setWhereId($conn, $_COOKIE["token"], $_POST["token"]);
-            move_uploaded_file($_FILES['file']['tmp_name'], CONTAINER . $id . ".pdf");
+            try {
+                  move_uploaded_file($_FILES['file']['tmp_name'], CONTAINER . $id . ".pdf");
+            } catch (Exception $e) {
+                  echo $e->getMessage();
+            }
             $res = NULL;
             session_start();
             if ($_SESSION["role"] != "MAHASISWA") {
