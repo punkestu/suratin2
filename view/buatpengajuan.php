@@ -69,6 +69,7 @@ loginIfnotAuth();
       </form>
       <script>
             const ajukan = e => {
+                  console.log("pengajuan...");
                   e.preventDefault();
 
                   $("#surat-error").html("");
