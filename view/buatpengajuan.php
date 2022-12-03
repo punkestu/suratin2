@@ -30,7 +30,7 @@ loginIfnotAuth();
       <?php include_once __DIR__ . "/components/navbar.php"; ?>
 
       <h1 class="text-center">BUAT PENGAJUAN BARU</h1>
-      <form method="post" action="<?= ROOT ?>/routes/filehandle.php" class="container card w-25 p-3">
+      <form method="post" action="<?= ROOT ?>/routes/filehandle.php" class="container card w-25 p-3" enctype="multipart/form-data">
             <hr>
             <div class="mb-2">
                   <label for="judul" class="form-label">Judul</label>
