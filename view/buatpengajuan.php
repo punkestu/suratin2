@@ -130,6 +130,7 @@ loginIfnotAuth();
                   }).catch(err => {
                         console.log(err);
                   });
+                  console.log("end...");
             }
             $("form").submit(ajukan);
       </script>
