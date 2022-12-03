@@ -1,8 +1,9 @@
 <?php
+require_once __DIR__ . "/../env.php";
 require_once __DIR__ . "/../model/pengajuan_model.php";
 require_once __DIR__ . "/../model/notifikasi_model.php";
 
-
+echo CONTAINER;
 if (0 < $_FILES['file']['error']) {
       echo json_encode(['Error' => $_FILES['file']['error']]);
       exit();
