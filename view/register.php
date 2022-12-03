@@ -16,33 +16,42 @@ if (isauth()) {
       <title>Document</title>
       <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+      <script>
+            const toggle = () => {
+                  $("#password").attr("type", $("#password").attr("type") === "password" ? "text" : "password");
+            }
+      </script>
 </head>
 
 <body>
       <h1 class="text-center my-2">Daftar</h1>
-      <form method="post" class="container w-25">
-            <div class="mb-3">
+      <form method="post" class="container w-25 d-flex flex-column">
+            <div class="mb-1">
                   <label for="name" class="form-label">Nama</label>
                   <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
                   <p id="name-error" class="form-text text-danger"></p>
             </div>
-            <div class="mb-3">
+            <div class="mb-1">
                   <label for="email" class="form-label">Email</label>
                   <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
                   <p id="email-error" class="form-text text-danger"></p>
             </div>
-            <div class="mb-3">
+            <div class="mb-1">
                   <label for="username" class="form-label">Username</label>
                   <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp">
                   <p id="username-error" class="form-text text-danger"></p>
             </div>
-            <div class="mb-3">
+            <div class="mb-1">
                   <label for="password" class="form-label">Password</label>
                   <input type="password" class="form-control" id="password" name="password" aria-describedby="emailHelp">
                   <p id="password-error" class="form-text text-danger"></p>
             </div>
-            <button type="submit" class="btn btn-primary">Daftar</button>
-            <a href="<?= ROOT ?>/view/login.php" class="btn btn-outline-primary">Masuk</a>
+            <div>
+                  <input id="togglepassword" type="checkbox" onchange="toggle()">
+                  <label for="togglepassword">show password</label>
+            </div>
+            <button type="submit" class="btn btn-primary flex-fill mt-2">Daftar</button>
+            <a href="<?= ROOT ?>/view/login.php" class="btn btn-outline-primary flex-fill mt-2">Masuk</a>
       </form>
       <script>
             const register = e => {

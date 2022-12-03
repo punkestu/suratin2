@@ -89,13 +89,21 @@ class User
                   $buffer = [];
 
                   while ($row = $res->fetch_assoc()) {
-                        //array_push($buffer, $row);
                         array_push($buffer, new User(id: $row["id"], name: $row["name"]));
                   }
 
                   return $buffer;
             }
             return [];
+      }
+      public static function isAdmin($conn, $id){
+            $query = "SELECT count(id) FROM users WHERE id='$id' AND kode_role=1;";
+            $res = $conn->query($query);
+            $res = $res->fetch_assoc();
+            if((int)($res["count(id)"]) > 0){
+                  return true;
+            }
+            return false;
       }
       public static function create($conn, $name, $email, $username, $password, $role)
       {
@@ -109,5 +117,14 @@ class User
                   $res["msg"] = $e->getMessage();
             }
             return $res;
+      }
+      public static function changePassword($conn, $username, $email, $newPassword){
+            $query = "UPDATE users SET password='$newPassword' WHERE username='$username' OR email='$email';";
+            try{
+                  $conn->query($query);
+                  return "OK";
+            }catch(Exception $e){
+                  return $e->getMessage();
+            }
       }
 }

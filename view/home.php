@@ -49,6 +49,8 @@ loginIfnotAuth();
             </div>
             <?php if ($_SESSION["role"] == "MAHASISWA") : ?>
                   <a class="btn btn-lg btn-primary mt-2 mx-auto w-50" href="<?= ROOT ?>/view/buatpengajuan.php">&plus; Ajukan surat</a>
+            <?php elseif ($_SESSION["role"] == "ADMIN") : ?>
+                  <a class="btn btn-lg btn-primary mt-2 mx-auto w-50" href="<?= ROOT ?>/view/forgetpassword.php">Ubah Password</a>
             <?php endif; ?>
       </div>
 </body>
