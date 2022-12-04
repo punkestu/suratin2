@@ -34,8 +34,9 @@ class Pengajuan
       public $file;
       public $file_hasil;
       public $forward;
+      public $created_by;
 
-      public function __construct($id = NULL, $judul = NULL, $created_at = NULL, $kategori = NULL, $status = NULL, $file = NULL, $file_hasil = NULL, $forward = NULL)
+      public function __construct($id = NULL, $judul = NULL, $created_at = NULL, $kategori = NULL, $status = NULL, $file = NULL, $file_hasil = NULL, $forward = NULL, $created_by = NULL)
       {
             $this->id = $id;
             $this->judul = $judul;
@@ -45,6 +46,7 @@ class Pengajuan
             $this->file = $file;
             $this->file_hasil = $file_hasil;
             $this->forward = $forward;
+            $this->created_by = $created_by;
       }
       private function set($row)
       {
@@ -56,10 +58,11 @@ class Pengajuan
             $this->file = $row["file"];
             $this->file_hasil = $row["file_hasil"];
             $this->forward = $row["forward"];
+            $this->created_by = $row["created_by"];
       }
       public function setWhereId($conn, $createdBy, $id, $index = 0)
       {
-            $query = "SELECT p.id as id, judul, created_at, kategori, s.status as status, file, file_hasil, name as forward FROM pengajuan p JOIN file_surat fs ON fs.id = p.file JOIN kategori_surat ks ON fs.kategori_id = ks.kode JOIN users u ON u.id = p.forwarded_to JOIN status s ON s.kode = p.status WHERE p.id = '$id' AND ( created_by='$createdBy' OR forwarded_to='$createdBy');";
+            $query = "SELECT p.id as id, judul, created_at, kategori, s.status as status, file, file_hasil, u.name as forward, u2.name as created_by FROM pengajuan p JOIN file_surat fs ON fs.id = p.file JOIN kategori_surat ks ON fs.kategori_id = ks.kode JOIN users u ON u.id = p.forwarded_to JOIN users u2 ON u2.id = p.created_by JOIN status s ON s.kode = p.status WHERE p.id = '$id' AND ( created_by='$createdBy' OR forwarded_to='$createdBy');";
             $res = $conn->query($query);
             if ($res->num_rows > 0) {
                   $row = [];
@@ -124,14 +127,14 @@ class Pengajuan
       public static function whereCreatedBy($conn, $createdBy)
       {
             try {
-                  $query = "SELECT p.id as id, judul, created_at, kategori, s.status as status, file, file_hasil, name as forward FROM pengajuan p JOIN file_surat fs ON fs.id = p.file JOIN kategori_surat ks ON fs.kategori_id = ks.kode JOIN users u ON u.id = p.forwarded_to JOIN status s ON s.kode = p.status WHERE created_by='$createdBy' ORDER BY created_at DESC;";
+                  $query = "SELECT p.id as id, judul, created_at, kategori, s.status as status, file, file_hasil, u.name as forward, u2.name as created_by FROM pengajuan p JOIN file_surat fs ON fs.id = p.file JOIN kategori_surat ks ON fs.kategori_id = ks.kode JOIN users u ON u.id = p.forwarded_to JOIN users u2 ON u2.id = p.created_by JOIN status s ON s.kode = p.status WHERE p.created_by='$createdBy' ORDER BY created_at DESC;";
                   $res = $conn->query($query);
                   if ($res->num_rows > 0) {
                         $buffer = [];
 
                         while ($row = $res->fetch_assoc()) {
                               $row["created_at"] = strftime("%d/%b/%Y %R %Z", $row["created_at"]);
-                              array_push($buffer, new Pengajuan($row["id"], $row["judul"], $row["created_at"], $row["kategori"], $row["status"], $row["file"], $row["file_hasil"], $row["forward"]));
+                              array_push($buffer, new Pengajuan($row["id"], $row["judul"], $row["created_at"], $row["kategori"], $row["status"], $row["file"], $row["file_hasil"], $row["forward"], $row["created_by"]));
                         }
                         return ["code" => 200, "data" => $buffer];
                   }
@@ -169,7 +172,7 @@ class Pengajuan
       public static function whereForwardTo($conn, $forwardTo)
       {
             try {
-                  $query = "SELECT p.id as id, judul, created_at, kategori, s.status as status, file, file_hasil, name as forward FROM pengajuan p JOIN file_surat fs ON fs.id = p.file JOIN kategori_surat ks ON fs.kategori_id = ks.kode JOIN users u ON u.id = p.forwarded_to JOIN status s ON s.kode = p.status WHERE forwarded_to='$forwardTo' ORDER BY created_at DESC;";
+                  $query = "SELECT p.id as id, judul, created_at, kategori, s.status as status, file, file_hasil, u.name as forward, u2.name as created_by FROM pengajuan p JOIN file_surat fs ON fs.id = p.file JOIN kategori_surat ks ON fs.kategori_id = ks.kode JOIN users u ON u.id = p.forwarded_to JOIN users u2 ON u2.id = p.created_by JOIN status s ON s.kode = p.status WHERE forwarded_to='$forwardTo' ORDER BY created_at DESC;";
                   $res = $conn->query($query);
                   if ($res->num_rows > 0) {
                         $buffer = [];
@@ -177,7 +180,7 @@ class Pengajuan
                         while ($row = $res->fetch_assoc()) {
                               $row["created_at"] = strftime("%d/%b/%Y %R %Z", $row["created_at"]);
                               // array_push($buffer, $row);
-                              array_push($buffer, new Pengajuan($row["id"], $row["judul"], $row["created_at"], $row["kategori"], $row["status"], $row["file"], $row["file_hasil"], $row["forward"]));
+                              array_push($buffer, new Pengajuan($row["id"], $row["judul"], $row["created_at"], $row["kategori"], $row["status"], $row["file"], $row["file_hasil"], $row["forward"], $row["created_by"]));
                         }
                         return ["code" => 200, "data" => $buffer];
                   }
