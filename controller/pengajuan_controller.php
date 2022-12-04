@@ -10,7 +10,8 @@ function getYours()
 }
 function getAllKategori(){
       $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
-      $data = getAllCategories($conn);
+      //$data = getAllCategories($conn);
+      $data = ["test","test"];
       return $data;
 }
 function getForYou()
