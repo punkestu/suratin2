@@ -11,10 +11,10 @@ class Komentar
             $this->name = $name;
             $this->komentar = $komentar;
       }
-      public static function create($conn, $message, $user_id, $pengajuan_id, $comment_to = NULL)
+      public static function create($conn, $message, $user_id, $pengajuan_id)
       {
             $id = uniqid() . uniqid();
-            $query = "INSERT INTO komentar (id, pengajuan_id, user_id, komentar".($comment_to == NULL ? "" : ", reply_to").") VALUES ('$id', '$pengajuan_id', '$user_id', '$message'".($comment_to == NULL ? "" : ", $comment_to").");";
+            $query = "INSERT INTO komentar (id, pengajuan_id, user_id, komentar) VALUES ('$id', '$pengajuan_id', '$user_id', '$message');";
             $res = ["msg" => NULL, "data" => ""];
             try {
                   $conn->query($query);
