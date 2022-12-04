@@ -97,8 +97,8 @@
             message: $("#komentar").val(),
             pengajuan: "<?= $data->id ?>"
         }).then((data, status, jqXHR) => {
-            // location.reload();
-            console.log(data);
+            location.reload();
+            // console.log(data);
         });
     }
     $("#upload").submit(upload_filehasil);
