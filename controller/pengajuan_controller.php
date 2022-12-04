@@ -10,6 +10,7 @@ function getYours()
 }
 function getAllKategori(){
       $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
+      echo "pass";
       $data = getAllCategories($conn);
       var_dump($data);
       return $data;
