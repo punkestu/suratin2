@@ -23,6 +23,15 @@ function translateKategori($conn, $kategori)
       }
       return $res;
 }
+function getAllCategories($conn)
+{
+      $res = $conn->query("SELECT * FROM kategori_surat");
+      $buffer = [];
+      while($row = $res->fetch_assoc()){
+            array_push($buffer, $row);
+      }
+      return $buffer;
+}
 
 class Pengajuan
 {
@@ -143,7 +152,8 @@ class Pengajuan
                   return ["code" => 400, "data" => $e->getMessage()];
             }
       }
-      public static function count($conn, $createdBy){
+      public static function count($conn, $createdBy)
+      {
             try {
                   $query = "SELECT count(id) FROM pengajuan WHERE created_by='$createdBy';";
                   $res = $conn->query($query);
@@ -156,7 +166,8 @@ class Pengajuan
                   return ["code" => 400, "data" => $e->getMessage()];
             }
       }
-      public static function countForwardTo($conn, $forwarded_to){
+      public static function countForwardTo($conn, $forwarded_to)
+      {
             try {
                   $query = "SELECT count(id) FROM pengajuan WHERE forwarded_to='$forwarded_to';";
                   $res = $conn->query($query);
@@ -169,7 +180,8 @@ class Pengajuan
                   return ["code" => 400, "data" => $e->getMessage()];
             }
       }
-      public static function countStatus($conn, $createdBy, $status){
+      public static function countStatus($conn, $createdBy, $status)
+      {
             try {
                   $query = "SELECT count(id) FROM pengajuan p JOIN status s ON p.status = s.kode WHERE s.status='$status' AND p.created_by='$createdBy';";
                   $res = $conn->query($query);
@@ -203,8 +215,9 @@ class Pengajuan
             }
       }
 
-      public static function deleteWhereId($conn, $id, $user_id){
-            try{
+      public static function deleteWhereId($conn, $id, $user_id)
+      {
+            try {
                   $query = "DELETE FROM notifikasi WHERE pengajuan_id='$id';";
                   $conn->query($query);
                   $query = "DELETE FROM komentar WHERE pengajuan_id='$id';";
@@ -212,7 +225,7 @@ class Pengajuan
                   $query = "DELETE FROM pengajuan WHERE id='$id' AND created_by='$user_id';";
                   $conn->query($query);
                   return ["code" => 200, "msg" => "OK"];
-            }catch(Exception $e){
+            } catch (Exception $e) {
                   return ["code" => 400, "msg" => $e->getMessage()];
             }
       }

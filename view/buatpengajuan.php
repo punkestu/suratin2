@@ -49,14 +49,9 @@ loginIfnotAuth();
             <div class="mb-2">
                   <label for="kategori" class="form-label">Kategori surat</label>
                   <select name="kategori" id="kategori" class="form-select">
-                        <option value="1">peminjaman tempat</option>
-                        <option value="2">peminjaman alat</option>
-                        <option value="3">tanda tangan proposal</option>
-                        <option value="4">tandan tangan lpj</option>
-                        <option value="5">tugas</option>
-                        <option value="6">ijin</option>
-                        <option value="7">dispensasi</option>
-                        <option value="8">beasiswa</option>
+                        <?php foreach (getAllKategori() as $kategori) : ?>
+                              <option value="<?= $kategori["kode"] ?>"><?= ucwords($kategori["kategori"]) ?></option>
+                        <?php endforeach; ?>
                   </select>
                   <p class="form-text text-danger" id="kategori-error"></p>
             </div>

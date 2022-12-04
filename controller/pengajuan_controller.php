@@ -8,6 +8,11 @@ function getYours()
       $data = Pengajuan::whereCreatedBy($conn, $_COOKIE["token"]);
       return $data;
 }
+function getAllKategori(){
+      $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
+      $data = getAllCategories($conn);
+      return $data;
+}
 function getForYou()
 {
       $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
