@@ -25,7 +25,7 @@ function translateKategori($conn, $kategori)
 }
 function getAllCategories($conn)
 {
-      $res = $conn->query("SELECT * FROM kategori_surat");
+      $res = $conn->query("SELECT * FROM kategori_surat;");
       $buffer = [];
       while($row = $res->fetch_assoc()){
             array_push($buffer, $row);
