@@ -25,12 +25,16 @@ function translateKategori($conn, $kategori)
 }
 function getAllCategories($conn)
 {
-      $res = $conn->query("SELECT * FROM kategori_surat;");
-      $buffer = [];
-      while ($row = $res->fetch_assoc()) {
-            array_push($buffer, $row);
+      try{
+            $res = $conn->query("SELECT * FROM kategori_surat;");
+            $buffer = [];
+            while($row = $res->fetch_assoc()){
+                  array_push($buffer, $row);
+            }
+            return $buffer;
+      }catch(Exception $e){
+            return [["test","test"]];
       }
-      return $buffer;
 }
 
 class Pengajuan
