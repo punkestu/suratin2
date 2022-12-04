@@ -33,18 +33,25 @@ loginIfnotAuth();
                   <?php
                   $pengajuan = getYours();
                   ?>
-                  <div class="card text-center p-2 w-75 mb-2">
-                        <h4>Surat yang kamu ajukan</h4>
-                        <h4><?= getCount()["data"] ?></h4>
-                  </div>
-                  <div class="card text-center p-2 w-75 mb-2 bg-success">
-                        <h4 class="text-light">Surat yang diterima</h4>
-                        <h4 class="text-light"><?= getCountSuccess()["data"] ?></h4>
-                  </div>
-                  <div class="card text-center p-2 w-75 mb-2 bg-danger">
-                        <h4 class="text-light">Surat yang ditolak</h4>
-                        <h4 class="text-light"><?= getCountFailed()["data"] ?></h4>
-                  </div>
+                  <?php if ($_SESSION["role"] == "MAHASISWA") : ?>
+                        <div class="card text-center p-2 w-75 mb-2">
+                              <h4>Surat yang kamu ajukan</h4>
+                              <h4><?= getCount()["data"] ?></h4>
+                        </div>
+                        <div class="card text-center p-2 w-75 mb-2 bg-success">
+                              <h4 class="text-light">Surat yang diterima</h4>
+                              <h4 class="text-light"><?= getCountSuccess()["data"] ?></h4>
+                        </div>
+                        <div class="card text-center p-2 w-75 mb-2 bg-danger">
+                              <h4 class="text-light">Surat yang ditolak</h4>
+                              <h4 class="text-light"><?= getCountFailed()["data"] ?></h4>
+                        </div>
+                  <?php else : ?>
+                        <div class="card text-center p-2 w-75 mb-2">
+                              <h4>Surat untuk kamu</h4>
+                              <h4><?= getCountForwardToMe()["data"] ?></h4>
+                        </div>
+                  <?php endif; ?>
                   <a class="btn btn-lg btn-primary w-75" href="<?= ROOT ?>/view/listpengajuan.php?code=">Buka list pengajuan &raquo;</a>
             </div>
             <?php if ($_SESSION["role"] == "MAHASISWA") : ?>

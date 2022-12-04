@@ -20,6 +20,12 @@ function getCount()
       $data = Pengajuan::count($conn, $_COOKIE["token"]);
       return $data;
 }
+function getCountForwardToMe()
+{
+      $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
+      $data = Pengajuan::countForwardTo($conn, $_COOKIE["token"]);
+      return $data;
+}
 function getCountSuccess()
 {
       $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);

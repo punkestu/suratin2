@@ -156,6 +156,19 @@ class Pengajuan
                   return ["code" => 400, "data" => $e->getMessage()];
             }
       }
+      public static function countForwardTo($conn, $forwarded_to){
+            try {
+                  $query = "SELECT count(id) FROM pengajuan WHERE forwarded_to='$forwarded_to';";
+                  $res = $conn->query($query);
+                  if ($res->num_rows > 0) {
+                        $row = $res->fetch_assoc();
+                        return ["code" => 200, "data" => $row["count(id)"]];
+                  }
+                  return ["code" => 200, "data" => []];
+            } catch (Exception $e) {
+                  return ["code" => 400, "data" => $e->getMessage()];
+            }
+      }
       public static function countStatus($conn, $createdBy, $status){
             try {
                   $query = "SELECT count(id) FROM pengajuan p JOIN status s ON p.status = s.kode WHERE s.status='$status' AND p.created_by='$createdBy';";
