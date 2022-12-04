@@ -49,6 +49,8 @@ loginIfnotAuth();
             <div class="mb-2">
                   <label for="kategori" class="form-label">Kategori surat</label>
                   <select name="kategori" id="kategori" class="form-select">
+                        <option value="test">test</option>
+
                         <?php foreach (getAllKategori() as $kategori) : ?>
                               <option value="test">test</option>
                         <?php endforeach; ?>
