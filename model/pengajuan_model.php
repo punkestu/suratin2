@@ -1,5 +1,4 @@
 <?php
-require __DIR__ . "/user_model.php";
 
 function translateStatus($conn, $status)
 {
