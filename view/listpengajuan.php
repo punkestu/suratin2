@@ -50,7 +50,13 @@ updateStatusPengajuan();
                               <hr>
                               <div class="card-body">
                                     <p>Diajukan pada: <?= $d->created_at ?></p>
-                                    <p>Ditujukan untuk: <?= $d->forward ?></p>
+                                    <p>
+                                          <?php if ($_SESSION["role"] == "MAHASISWA") : ?>
+                                                Ditujukan untuk: <?= $d->forward ?>
+                                          <?php else : ?>
+                                                Diajukan oleh: <?= $d->created_by ?>
+                                          <?php endif; ?>
+                                    </p>
                                     <h3 class="<?= $d->status == "diterima" ? "text-success" : ($d->status == "ditolak" ? "text-danger" : "text-secondary") ?>">Progres: <?= $d->status ?></h3>
                               </div>
                               <a href="<?= ROOT ?>/view/listpengajuan.php?code=<?= $d->id ?>" class="btn btn-primary mb-2">Detail</a>
