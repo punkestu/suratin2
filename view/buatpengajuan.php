@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../tools.php";
 require_once __DIR__ . "/../env.php";
 require_once __DIR__ . "/../controller/user_controller.php";
+require_once __DIR__ . "/../controller/pengajuan_controller.php";
 
 session_start();
 homeIfnotMahasiswa();
@@ -49,10 +50,8 @@ loginIfnotAuth();
             <div class="mb-2">
                   <label for="kategori" class="form-label">Kategori surat</label>
                   <select name="kategori" id="kategori" class="form-select">
-                        <option value="test">test</option>
-
                         <?php foreach (getAllKategori() as $kategori) : ?>
-                              <option value="test">test</option>
+                              <option value="<?= $kategori["kode"] ?>"><?= $kategori["kategori"] ?></option>
                         <?php endforeach; ?>
                   </select>
                   <p class="form-text text-danger" id="kategori-error"></p>
