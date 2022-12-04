@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . "/../env.php";
 require_once __DIR__ . "/../model/komentar_model.php";
 
 $conn = new mysqli(HOST, USERNAME, PASSWORD, DB);
